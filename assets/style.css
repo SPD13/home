@@ -215,3 +215,23 @@ a { color: inherit; text-decoration: none; }
   .identity-text h1 { font-size: 1.3rem; }
   .github-link span { display: none; }
 }
+
+/* Tile footer / Claude Code marker */
+.tile-footer {
+  border-top: 1px solid var(--border);
+  padding: 0.5rem 1.25rem;
+}
+
+.made-with {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+}
+
+.claude-icon {
+  color: #d97757;
+  flex-shrink: 0;
+}
