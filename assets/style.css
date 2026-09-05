@@ -157,6 +157,20 @@ a { color: inherit; text-decoration: none; }
   font-size: 1.25rem;
 }
 
+.tile-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.tile-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 9px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
 .tile-body p {
   margin: 0;
   color: var(--muted);

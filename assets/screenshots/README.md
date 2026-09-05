@@ -6,6 +6,10 @@ the full-size original is kept alongside it for reference.
 | Project    | Original (full size)  | Used on the page                 |
 |------------|-----------------------|----------------------------------|
 | Lemmix VR  | `lemmix_vr.png`       | `lemmix_vr_thumb.png` (1280 px)  |
+| Lemmix VR (icon) | `lemmix_vr_logo.jpeg` | `lemmix_vr_logo.png` (256 px, transparent) |
+
+The title icon is the app logo with its white background removed (flood-filled from the
+edges) and cropped to the icon, so it sits cleanly on the dark tile.
 
 To regenerate a thumbnail from an original (1280 px wide, 256-color palette, well suited to pixel art):
 
