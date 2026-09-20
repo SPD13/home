@@ -7,9 +7,12 @@ the full-size original is kept alongside it for reference.
 |------------|-----------------------|----------------------------------|
 | Lemmix VR  | `lemmix_vr.png`       | `lemmix_vr_thumb.png` (1280 px)  |
 | Lemmix VR (icon) | `lemmix_vr_logo.jpeg` | `lemmix_vr_logo.png` (256 px, transparent) |
+| LateralAI  | `lateralAI_screenshot.png` | `lateralai_thumb.png` (1280x720) |
+| LateralAI (icon) | `lateralAI_logo.png`  | `lateralai_logo_thumb.png` (256 px) |
 
-The title icon is the app logo with its white background removed (flood-filled from the
-edges) and cropped to the icon, so it sits cleanly on the dark tile.
+The Lemmix VR title icon is the app logo with its white background removed (flood-filled from the
+edges) and cropped to the icon, so it sits cleanly on the dark tile. The LateralAI logo is already a
+rounded app icon with transparent corners, so it is only resized.
 
 To regenerate a thumbnail from an original (1280 px wide, 256-color palette, well suited to pixel art):
 
@@ -19,6 +22,20 @@ from PIL import Image
 im = Image.open('lemmix_vr.png').convert('RGB')
 im = im.resize((1280, round(im.height * 1280 / im.width)), Image.LANCZOS)
 im.quantize(256, dither=Image.Dither.NONE).save('lemmix_vr_thumb.png', optimize=True)
+"
+```
+
+For a UI screenshot, keep the full color range instead and crop to an exact 16:9 frame before
+resizing, so nothing is cut off by the tile's `object-fit: cover`:
+
+```sh
+python3 -c "
+from PIL import Image
+im = Image.open('lateralAI_screenshot.png').convert('RGB')
+w, h = im.size
+tw = round(h * 16 / 9)
+left = (w - tw) // 2
+im.crop((left, 0, left + tw, h)).resize((1280, 720), Image.LANCZOS).save('lateralai_thumb.png', optimize=True)
 "
 ```
 
