@@ -8,6 +8,7 @@
   --accent: #58a6ff;
   --accent-strong: #2f81f7;
   --radius: 12px;
+  --new: #f85149;
 }
 
 * { box-sizing: border-box; }
@@ -92,6 +93,17 @@ a { color: inherit; text-decoration: none; }
   padding: 2rem 1.5rem 3rem;
 }
 
+.tile-section + .tile-section {
+  margin-top: 3rem;
+}
+
+.section-title {
+  margin: 0 0 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 1.5rem;
+}
+
 .tiles {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -152,7 +164,7 @@ a { color: inherit; text-decoration: none; }
   padding: 1rem 1.25rem 0.5rem;
 }
 
-.tile-body h2 {
+.tile-body h3 {
   margin: 0 0 0.5rem;
   font-size: 1.25rem;
 }
@@ -176,6 +188,26 @@ a { color: inherit; text-decoration: none; }
   color: var(--muted);
   font-size: 0.95rem;
 }
+
+/* A line below the description with its own link, kept outside .tile-link because
+   links cannot nest. It takes over the stretch so it sits right under the description. */
+.tile-link:has(+ .tile-note) { flex: none; }
+
+.tile-note {
+  flex: 1;
+  margin: 0;
+  padding: 0.25rem 1.25rem 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.tile-note a {
+  color: var(--accent);
+}
+
+.tile-note a:hover { text-decoration: underline; }
+
+.tag-new { color: var(--new); }
 
 .tile-actions {
   display: flex;
