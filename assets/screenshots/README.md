@@ -11,6 +11,8 @@ the full-size original is kept alongside it for reference.
 | LateralAI (icon) | `lateralAI_logo.png`  | `lateralai_logo_thumb.png` (256 px) |
 | Stream Frame | `streamframe_screenshot.png` | `streamframe_thumb.png` (1280x720) |
 | Stream Frame (icon) | `streamframe_logo.jpeg` | `streamframe_logo_thumb.png` (256 px) |
+| Dune Hybrid | `dune_screenshot.png` | `dune_thumb.png` (1280x720) |
+| Dune Hybrid (icon) | `dune_icon.png` | `dune_icon_thumb.png` (256 px) |
 | VPinball VR | `vpinball_vr_hero.png` + `vpinball_vr_logo_text.png` | `vpinball_vr_thumb.png` (1280x720) |
 | VPinball VR (icon) | `vpinball_vr_logo.png` | `vpinball_vr_logo_thumb.png` (256 px, transparent) |
 
@@ -19,7 +21,8 @@ edges) and cropped to the icon, so it sits cleanly on the dark tile. The Lateral
 rounded app icon with transparent corners, so it is only resized. The Stream Frame icon is a square
 crop of the headset from the full logo (leaving out the wordmark), on its own dark background; the
 tile's rounded corners frame it. The Visual Pinball logo already has a transparent background, so it is
-trimmed to the ball, centred on a square canvas and resized.
+trimmed to the ball, centred on a square canvas and resized. The Dune Hybrid screenshot is already
+16:9 and its icon already square, so both are only resized.
 
 To regenerate a thumbnail from an original (1280 px wide, 256-color palette, well suited to pixel art):
 
