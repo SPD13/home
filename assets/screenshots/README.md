@@ -17,6 +17,8 @@ the full-size original is kept alongside it for reference.
 | VPinball VR (icon) | `vpinball_vr_logo.png` | `vpinball_vr_logo_thumb.png` (256 px, transparent) |
 | CitraVR | `citravr_hero.png` + `citravr_logo_text.png` | `citravr_thumb.png` (1280x720) |
 | CitraVR (icon) | `icon.png` from the Steam library art | `citravr_logo_thumb.png` (256 px, transparent) |
+| ARMSX2 VR | `armsx2_vr_hero.png` + `armsx2_vr_logo_text.png` | `armsx2_vr_thumb.png` (1280x720) |
+| ARMSX2 VR (icon) | `icon.png` from the Steam library art | `armsx2_vr_logo_thumb.png` (256 px, transparent) |
 
 The Lemmix VR title icon is the app logo with its white background removed (flood-filled from the
 edges) and cropped to the icon, so it sits cleanly on the dark tile. The LateralAI logo is already a
@@ -92,5 +94,30 @@ The CitraVR image is built the same way, from the Steam library art in its fork
 (`steam-frame/library-art/`): `hero.png` and `logo.png` are kept here as `citravr_hero.png` and
 `citravr_logo_text.png`, and the same script with those file names gives `citravr_thumb.png`. The
 title icon is the library art's `icon.png` (already 256 px with rounded transparent corners), unchanged.
+
+The ARMSX2 VR image comes from the Steam library art in its repository (`assets/steam/`, the Alpha
+version with the ALPHA badge): `hero.png` and `logo.png` are kept here as `armsx2_vr_hero.png` and
+`armsx2_vr_logo_text.png`. The hero is only 1920x620 and its light-gun window starts at x = 900, so
+instead of the left 16:9 part, the empty 880 px on the left are cropped to 16:9 around the middle,
+then the logo goes on top as above:
+
+```sh
+python3 -c "
+from PIL import Image
+hero = Image.open('armsx2_vr_hero.png').convert('RGB')
+logo = Image.open('armsx2_vr_logo_text.png').convert('RGBA')
+w = 880
+h = round(w * 9 / 16)
+top = (hero.height - h) // 2
+bg = hero.crop((0, top, w, top + h)).resize((1280, 720), Image.LANCZOS)
+lw = 1000
+logo = logo.resize((lw, round(logo.height * lw / logo.width)), Image.LANCZOS)
+bg.paste(logo, ((1280 - lw) // 2, (720 - logo.height) // 2), logo)
+bg.save('armsx2_vr_thumb.png', optimize=True)
+"
+```
+
+The title icon is the library art's `icon.png`, unchanged. When the project leaves Alpha, the same
+files from `assets/steam-final/` (without the badge) can replace these.
 
 If the thumbnail file is missing, the tile shows a "Screenshot coming soon" placeholder instead.
