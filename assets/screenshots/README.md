@@ -19,6 +19,8 @@ the full-size original is kept alongside it for reference.
 | CitraVR (icon) | `icon.png` from the Steam library art | `citravr_logo_thumb.png` (256 px, transparent) |
 | ARMSX2 VR | `armsx2_vr_hero.png` + `armsx2_vr_logo_text.png` | `armsx2_vr_thumb.png` (1280x720) |
 | ARMSX2 VR (icon) | `icon.png` from the Steam library art | `armsx2_vr_logo_thumb.png` (256 px, transparent) |
+| Privateer 2 VR | `privateer2_vr_hero.jpg` (installer banner) | `privateer2_vr_thumb.jpg` (1280x720) |
+| Privateer 2 VR (icon) | `privateer2_vr_icon.png` (installer icon) | `privateer2_vr_logo_thumb.png` (256 px, transparent) |
 
 The Lemmix VR title icon is the app logo with its white background removed (flood-filled from the
 edges) and cropped to the icon, so it sits cleanly on the dark tile. The LateralAI logo is already a
@@ -119,5 +121,22 @@ bg.save('armsx2_vr_thumb.png', optimize=True)
 
 The title icon is the library art's `icon.png`, unchanged. When the project leaves Alpha, the same
 files from `assets/steam-final/` (without the badge) can replace these.
+
+The Privateer 2 VR image comes from the installer artwork in its repository, built by
+`scripts/make_installer_art.py` from the game's Steam library art: `installer/ui/hero.jpg` (a
+1520x520 banner with the logo and VR MOD badge already on it) is kept here as
+`privateer2_vr_hero.jpg`, and its left 16:9 part, which holds the whole logo and badge, is used:
+
+```sh
+python3 -c "
+from PIL import Image
+hero = Image.open('privateer2_vr_hero.jpg').convert('RGB')
+h = hero.height
+hero.crop((0, 0, round(h * 16 / 9), h)).resize((1280, 720), Image.LANCZOS).save('privateer2_vr_thumb.jpg', quality=88)
+"
+```
+
+The title icon is the installer's `installer/icon.png` (512 px, rounded transparent corners, VR
+badge), kept as `privateer2_vr_icon.png` and resized to 256 px.
 
 If the thumbnail file is missing, the tile shows a "Screenshot coming soon" placeholder instead.
